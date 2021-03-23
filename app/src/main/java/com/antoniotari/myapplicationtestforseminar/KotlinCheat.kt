@@ -7,7 +7,7 @@ package com.antoniotari.myapplicationtestforseminar
  * whereas the secondary constructor helps to include some extra logic while initializing the same.
  *
  */
-class KotlinCheat(private val name: String, private val age: Int) {
+class KotlinCheat(private val name: String, private val age: Int = 22) {
     init {
         val a: Int = 10000
         val d: Double = 100.00
@@ -29,6 +29,15 @@ class KotlinCheat(private val name: String, private val age: Int) {
     constructor(name: String, age: Int, message: String) : this(name, age) {
         this.message = message
     }
+
+    fun booleans() {
+        val trueBoolean = true
+        val falseBoolean = false
+        val andCondition = trueBoolean && falseBoolean
+        val orCondition = trueBoolean || falseBoolean
+    }
+
+
 
     fun collections(args: Array<String>) {
         val numbers: MutableList<Int> = mutableListOf(1, 2, 3) //mutable List
@@ -75,10 +84,53 @@ class KotlinCheat(private val name: String, private val age: Int) {
         }
     }
 
+    fun nullSafety() {
+
+        // Nullable properties
+        val cannotBeNull: String = null // Invalid
+        val canBeNull: String? = null // Valid
+
+        val cannotBeNull: Int = null // Invalid
+        val canBeNull: Int? = null // Valid
+
+        // checking null
+        val name: String? = "Adam"
+
+        if (name != null && name.length > 0) {
+            print("String length is ${name.length}")
+        } else {
+            print("String is empty.")
+        }
+
+        // safe operator
+        val nullableStringLength: Int? = nullableString?.length
+        val nullableDepartmentHead: String? = person?.department?.head?.name
+
+        // safe cast
+        // Will not throw ClassCastException
+        val nullableCar: Car? = (input as? Car)
+
+        // elvis operator
+        val nonNullStringLength: Int = nullableString?.length ?: 0
+        val nonNullDepartmentHead: String = person?.department?.head?.name ?: ""
+        val nonNullDepartmentHead: String = person?.department?.head?.name.orEmpty()
+
+    }
+
     fun printMe() {
         print(name + age + message)
     }
 }
+
+
+// STATIC FIELDS
+class Person {
+    companion object {
+        val NAME_KEY = "name_key"
+    }
+}
+
+val key = Person.NAME_KEY
 
 
 /**
