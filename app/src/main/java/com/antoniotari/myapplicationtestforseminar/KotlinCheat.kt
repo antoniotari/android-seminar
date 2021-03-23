@@ -30,6 +30,50 @@ class KotlinCheat(private val name: String, private val age: Int) {
         this.message = message
     }
 
+    fun collections(args: Array<String>) {
+        val numbers: MutableList<Int> = mutableListOf(1, 2, 3) //mutable List
+        val readOnlyView: List<Int> = numbers                  // immutable list
+        println("my mutable list--$numbers")        // prints "[1, 2, 3]"
+        numbers.add(4)
+        println("my mutable list after addition --"+numbers)        // prints "[1, 2, 3, 4]"
+        println(readOnlyView)
+        // readOnlyView.clear()    // ⇒ does not compile
+        // gives error
+    }
+
+    fun ifElse(args: Array<String>) {
+        val a:Int = 5
+        val b:Int = 2
+        var max: Int
+
+        if (a > b) {
+            max = a
+        } else {
+            max = b
+        }
+        print("Maximum of a or b is " +max)
+
+        // As expression
+        // val max = if (a > b) a else b
+
+        val x:Int = 5
+        when (x) {
+            1 -> print("x = = 1")
+            2 -> print("x = = 2")
+
+            else -> { // Note the block
+                print("x is neither 1 nor 2")
+            }
+        }
+
+        when (x) {
+            1,2 -> print(" Value of X either 1,2")
+
+            else -> { // Note the block
+                print("x is neither 1 nor 2")
+            }
+        }
+    }
 
     fun printMe() {
         print(name + age + message)
