@@ -14,6 +14,10 @@ import okio.IOException
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
+    companion object {
+        const val TAG = "antonio"
+    }
+
     private val client = OkHttpClient()
     private val gson = Gson()
 
@@ -32,7 +36,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         img = findViewById(R.id.imageOne)
 
         // set click listeners where necessary
-        btn.setOnClickListener(this)
+        btn.setOnClickListener {
+            loadImage()
+        }
         textView.setOnClickListener(this)
 
         //example get request
@@ -55,8 +61,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
      * getting an image from the web using Glide library
      */
     private fun loadImage() {
-        Glide
-            .with(img)
+        Glide.with(img)
             .load("https://miro.medium.com/max/1100/1*YQgmKR1B9Pf58frRdGqMyA.jpeg")
             .centerCrop()
             .placeholder(R.drawable.ic_launcher_background)
@@ -67,7 +72,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
      * once we get a response from the API call we can do something with it, in this example I'm visualizing
      * the name of the colour and applying it to the background
      */
-    private fun applyResponseToUI(colour: ColourModel) {
+    fun applyResponseToUI(colour: ColourModel) {
         runOnUiThread { // modifications on the ui must happen on the ui thread
             textView.text = colour.colourName
             val mainLayout: LinearLayout = findViewById(R.id.mainLayoutOne)
@@ -91,13 +96,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     // the following block will model the response inside a ColourModel object or throw an exception if the response is null
                     response.body?.let { responseBody ->
                         val responseString = responseBody.string()
-                        Log.d("TAGTAG", responseString)
                         val colourModel = gson.fromJson(responseString, ColourModel::class.java)
-
                         applyResponseToUI(colourModel)
-                    } ?: Log.e("TAGTAG", "some connection error might have happened") // TODO: handle error
+
+                        Log.d(TAG, responseString)
+                    } ?: Log.e(TAG, "some connection error might have happened") // TODO: handle error
                 } else {
-                    // TODO: handle error
+                    Log.e(TAG, "connection unsuccessful") // TODO: handle error
                 }
             }
         })
