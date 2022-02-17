@@ -1,5 +1,9 @@
 # android-seminar
 
+presentation: https://docs.google.com/presentation/d/1chxXavF-63fD5avmNgwM03qhAnuseteH59BWa1avhfw/edit?usp=sharing
+
+https://developer.android.com/training/constraint-layout
+
 https://search.maven.org/
 
 https://kotlinlang.org/docs/home.html
