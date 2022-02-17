@@ -16,12 +16,20 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:background="@android:color/holo_blue_bright" />
+            android:background="#C0225588" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:background="@android:color/black" />
+
+        <TextView
+            android:text="HELLO"
+            android:gravity="center|top"
+            android:textStyle="bold"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"/>
 
         <View
             android:layout_width="match_parent"
@@ -44,9 +52,16 @@
                 android:background="@android:color/holo_blue_bright" />
 
             <View
-                android:layout_width="100dp"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="match_parent"
                 android:background="@android:color/black" />
+
+            <View
+                android:background="#FF0000"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"/>
 
         </LinearLayout>
 

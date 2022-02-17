@@ -32,13 +32,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         // grab the ui elements from the xml layout
         btn = findViewById(R.id.buttonOne)
         textView = findViewById(R.id.textViewOne)
-        textView.text = getString(R.string.newStr)
+        textView.text = applicationContext.getString(R.string.newStr)
         img = findViewById(R.id.imageOne)
 
         // set click listeners where necessary
         btn.setOnClickListener {
             loadImage()
         }
+        // btn.setOnClickListener(this)
+
         textView.setOnClickListener(this)
 
         //example get request
@@ -47,7 +49,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(view: View?) {
         when(view?.id) {
-            R.id.buttonOne -> loadImage()
+            R.id.buttonOne -> loadImage() // not needed if we're using the other type of callback
             R.id.textViewOne -> goToActivity2()
         }
     }
@@ -65,7 +67,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             .load("https://miro.medium.com/max/1100/1*YQgmKR1B9Pf58frRdGqMyA.jpeg")
             .centerCrop()
             .placeholder(R.drawable.ic_launcher_background)
-            .into(img);
+            .into(img)
     }
 
     /**
